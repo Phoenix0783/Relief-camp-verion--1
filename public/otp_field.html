@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #conf-btn {background-color: #004e64; color:#FFFFFF;}
+            #conf-btn:hover {background-color:#00a5cf; color:#004e64;}
+            #sub-btn {background-color: #004e64; color:#FFFFFF;}
+            #sub-btn:hover {background-color:#00a5cf; color:#004e64;}
+            #container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+        </style>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--model section-->
+        <div id="otp-model" aria-hidden="true" class="fixed right-0 left-0 z-50 justify-center items-center h-full inset-0" style="background-color:rgba(0, 0, 0, 0.3); display: none;">
+            <div class="relative px-5 w-full max-w-md h-auto">
+                <div class="relative bg-white rounded-lg cursor-default shadow">
+                    <div class="flex justify-end p-2">
+                        <button id="close" type="button" class="text-gray-600 bg-transparent hover:bg-gray-400 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path></svg>
+                        </button>
+                    </div>
+                    <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="#">
+                        <h3 class="text-xl font-oswald text-center font-medium" style="color: #202020;">Enter OTP</h3>
+                        <div>
+                            <input type="text" name="otp" id="otp" class="bg-gray-200 border border-gray-400 focus:border-gray-800 focus:bg-gray-50 text-sm rounded block w-full p-2.5 outline-none placeholder:text-gray-600" placeholder="Enter 6 digit code" required>
+                        </div>
+                        <div class="flex justify-center items-cente">
+                            <button id="conf-btn" type="submit" class="font-medium rounded-lg text-sm w-fit px-5 py-2.5 text-center">CONFIRM</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--model ends-->
+        <div id="container">
+            <button id="sub-btn" type="submit" class="rounded px-10 py-3 bg-teal-700 text-white">SUBMIT</button>
+        </div>
+    <script>
+            document.getElementById('sub-btn').addEventListener('click', 
+            function() {
+                document.getElementById('otp-model').style.display = 'flex';  
+            });
+            document.getElementById('close').addEventListener('click',
+             function(){
+                 document.getElementById('otp-model').style.display = 'none';
+             });
+    </script>
+    </body>
+</html>

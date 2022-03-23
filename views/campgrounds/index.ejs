@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View Camps</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="stylesheets/app.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        html { 
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            /* Primary Colors*/
+            --Midnight-Green-Eagle-Green: #004e64;
+
+            /* Secondary Colors */
+            --Cerulean-Crayola: #00a5cf;
+            --Persian-Green: #25a18e;
+
+            /* Tertiary Colors */
+            --black-title-text: #202020;
+            --grey-body-text: #535353;
+            --Aquamarine: #9fffcb;
+            --Light-Green: #7ae582;
+            --section-bg-grey: #fafafa;
+            --section-bg-blue: rgba(0, 165, 207, 0.1)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        main {
+            background-color: #E5F6FA;
+        }
+        @media (min-width: 750px) {
+            iframe {
+                height: 24rem;
+            }
+        }
+        @media (max-width: 749px) {
+            iframe {
+                height: 15rem;
+            }
+        }
+
+        .group, #map_div div {
+            background-color: var(--section-bg-blue);
+        }
+    </style>
+</head>
+
+<body>
+    <!--navigation start-->
+  <nav class="px-5 shadow sticky top-0 z-50" style="background-color: #004e64;">
+    <div class="flex justify-between items-center">
+      <!--Logo-->
+      <span class="text-xl font-oswald cursor-pointer text-white my-4">
+        <a href="index.html">RE<f style="color: #9fffcb;">LIE</f>F CAMP</a>
+      </span>
+      <!--home icon-->
+      <div class="flex justify-between items-center">
+        
+        <button title="login to see your booked camp"
+        class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+        <a href="/directions">Directions</a>
+      </button>
+
+        <button title="login to see your booked camp"
+        class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+        <a href="/DRO_form">Register as DRO</a>
+      </button>
+        
+        <button title="login to see your booked camp"
+        class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+        <a href="/alert">Send Alert</a>
+      </button>
+        <% if(!currentUser) { %>
+        <button title="login to see your booked camp"
+        class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+        <a href="/login">Sign In</a>
+      </button>
+      <% } %> 
+      <button class="mx-4 text-white focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg>
+        </button>
+    </div>
+    </div>
+    </nav>
+
+    <!-- Statistics Card -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 p-4 gap-4">
+        <div
+            class="shadow-sm w-full sm:w-3/5 m-auto hover:shadow-lg rounded-md flex items-center justify-between p-3 font-medium group">
+            <div
+                class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl">1,257</p>
+                <p>In Camps</p>
+            </div>
+        </div>
+        <div
+            class="shadow-sm w-full sm:w-3/5 m-auto hover:shadow-lg rounded-md flex items-center justify-between p-3 font-medium group">
+            <div
+                class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                  </svg>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl">557</p>
+                <p>Total Camps</p>
+            </div>
+        </div>  
+    </div>
+    <!-- Statistics Card -->
+
+    <!-- Camp Map -->
+    <div id="map_div" class="mt-8 mb-7">
+        <h1 class="mb-10 text-3xl font-oswald text-center" style="color: #202020;">Available Camps</h1>
+        <div class="mx-auto p-4 md:max-w-2xl rounded xl:max-w-4xl">
+            <div id="cluster-map"></div>
+          </div>
+    </div>
+    <!-- Camp Map end -->
+
+
+
+
+
+
+
+
+
+    <!-- List of camps --> 
+    <% for (let campground of campgrounds){%>
+    <div id="request_div" class="">
+        <div class="flex flex-col mb-14">
+            <div class="py-4 px-4 overflow-x-auto">
+                <div class="table-container align-middle max-h-screen overflow-y-auto inline-block min-w-full shadow sm:rounded-lg border-b border-gray-200" style="scrollbar-width: thin;">
+                    <table class="min-w-full">
+                        <thead class="sticky top-0 z-10 font-oswald">
+                            <tr class="">
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Camp Details</th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="font-montserrat">
+                            <tr class="">
+                                <td class="p-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="ml-2">
+                                    <div class="mb-1 text-lg leading-5 font-medium text-gray-900"><%= campground.title %>
+                                    </div>
+                                    <div class="mb-1 text-base max-w-2xl leading-5 text-gray-500"><%= campground.location%></div>
+                                    </div>
+                                    <p class="ml-2 text-base leading-5 text-gray-500">Remaining Capacity : <f class="text-green-600">20</f></p>
+                                </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
+                                    <div class="text-sm">
+                                        <button class="text-white px-4 py-2 font-montserrat rounded whitespace-nowrap" style="background-color: #004e64;"><a href="/campgrounds/<%=campground._id%>">View <%= campground.title %> </a> </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="px-4 py-3 bg-gray-50 sticky bottom-0 z-10">
+                        <span class="flex text-gray-600 items-center text-sm font-montserrat font-semibold col-span-3"> Total : <p id="total_arrived" class="font-montserrat font-semibold text-gray-500"> <%= campground.price%></p></span>                                                                      
+                    </div>
+                </div> 
+            </div>
+    </div>
+    <% }%>
+
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const campgrounds = { features: <%- JSON.stringify(campgrounds) %>}
+    </script>
+    
+    <script src="/javascripts/clusterMap.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- List of camps end -->
+    
+    <footer class="lg:text-left cursor-default">
+        <div class="text-center p-3 footer-bottom" style="background-color: #004e64;">
+          <span class="text-white font-oswald">© 2022 Copyright:</span>
+          <a class="text-white font-montserrat" href="index.html">Relief Camp</a>
+        </div>
+      </footer>
+    <script>
+       
+    </script>
+</body>
+</html>

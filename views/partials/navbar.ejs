@@ -1,0 +1,25 @@
+
+<nav style="background-color: #f3ca20;" class="navbar sticky-top navbar-expand-lg " py-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" style="font-size:40px;opacity: 1; color:black ; font-weight: bolder;" href="#"> RescueCamp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" style="font-size:30px;opacity: 1; color:black;border: white solid;border-radius:5px;margin-right: 10px;margin-left: 220px;" id="demo" href="/">HOME</a>
+                <a class="nav-link" style="font-size:30px;opacity: 1; color:black;border: white solid;border-radius:5px;margin-right: 10px;" href="/campgrounds">VIEW CAMPS</a>
+                <a class="nav-link" style="font-size:30px;opacity: 1; color:black;border: white solid;border-radius:5px;margin-right: 10px;" href="/campgrounds/new">CREATE NEW CAMP</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                <% if(!currentUser) {%>
+                <a class="nav-link" style="font-size:30px;opacity: 1; color:black;" href="/login">Login</a>
+                <a class="nav-link" style="font-size:30px;opacity: 1; color:black;" href="/register">Register</a>
+                <% } else {%>
+                <a class="nav-link" style="font-size:30px;opacity: 1; color:black;" href="/logout">Logout</a>
+                <% } %>
+            </div>
+        </div>
+    </div> 
+</nav> 

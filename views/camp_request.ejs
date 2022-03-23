@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+ 
+    <div id="active_div" class="hidden">
+        <div class="flex flex-col mb-14">
+            <div class="py-4 px-4 overflow-x-auto">
+                <div class="table-container align-middle max-h-screen overflow-y-auto inline-block min-w-full shadow sm:rounded-lg border-b border-gray-200" style="scrollbar-width: thin;">
+                    <table class="min-w-full">
+                        <thead class="sticky top-0 z-10 font-oswald">
+                            <tr class="">
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Camp</th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    People</th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Date</th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Status</th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="font-montserrat">
+                            <tr class="">
+                                <td class="p-4 whitespace-no-wrap border-b border-gray-200">
+                                 <div class="ml-2">
+                                            <div class="text-sm leading-5 font-medium text-gray-900">John 
+                                            </div>
+                                            <div class="text-sm leading-5 text-gray-500">fiehjioehj</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">20</div>
+                                </td>
+                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">15-01-2021</div>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                   <span class="px-2 py-1.5 font-montserrat text-sm font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full">Active</span>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
+                                    <button class="bg-red-500 text-white px-4 py-2 font-montserrat rounded">Remove</button>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div class="px-4 py-3 bg-gray-50 sticky bottom-0 z-10">
+                    <span class="flex text-gray-600 items-center text-sm font-montserrat font-semibold col-span-3"> Total : <p id="total_arrived" class="font-montserrat font-semibold text-gray-500">100</p></span>                                                                      
+                </div>
+                </div> 
+            </div>
+    </div></div>
+</body>
+</html>

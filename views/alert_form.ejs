@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+ 
+
+
+         <!--main div--> 
+         <div class="min-h-screen flex flex-col">
+          <!--conatainer starts-->
+          <div class="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <h3 class="mb-5 text-3xl font-oswald text-center" style="color: #202020;">Alert form</h3>
+              <div class="px-6 py-8 rounded w-full">
+                  <!--form starts-->
+                  <form action="/sendAlert" method="post" class="" onsubmit="return validate(this)">
+                      <!--Name feild-->
+                      <input 
+                          type="text"
+                          class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
+                          name="alert[name]"
+                          placeholder="Your Name" style="color: #535353;" required/>
+
+                          <!-- input location -->
+                          <input 
+                          type="text"
+                          class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
+                          name="alert[location]"
+                          placeholder="Your Location" style="color: #535353;" required/>
+
+
+                      <!--phone number feild-->
+                      <input 
+                          type="text"
+                          id="phone" onkeyup="phone_no()"
+                          class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-2 outline-none focus:border-black"
+                          name="alert[phone]"
+                          placeholder="Valid 10 digit mobile number" style="color: #535353;" required/>
+                          <p id="phone_alert" class="mb-4 text-xs"></p> 
+
+                          <!--date feild-->
+                          <input 
+                          type="date"
+                          class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
+                          name="alert[date]"
+                          placeholder="Enter Date" style="color: #535353;" required/> 
+
+                      <!-- time field -->
+                      <input 
+                          type="time"
+                          class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
+                          name="alert[time]"
+                          placeholder="Enter Time" style="color: #535353;" required/> 
+                      <button
+                          type="submit"
+                          id="sub-btn"
+                          style="background-color: #004E64;"
+                          class="w-full text-center font-oswald py-3 rounded text-white focus:outline-none my-1 transition duration-150 ease-in-out uppercase">Submit</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <script>
+      //for menu
+      const toggle = document.getElementById('menu_icon');
+      const sidebar = document.getElementById('drop_menu');
+      const cross = document.getElementById('cross_icon');
+      const line = document.getElementById('line_icon');
+      //if click outside it will close autometically
+      document.onclick = function (e) {
+        if (e.target.id !== 'menu_icon' && e.target.id !== 'drop_menu' && e.target.id !== 'select') {
+          sidebar.classList.remove('active');
+          cross.classList.remove('active');
+          line.classList.remove('deactive');
+        }
+      }
+      //toggle menu 
+      toggle.onclick = function () {
+        sidebar.classList.toggle('active');
+        cross.classList.toggle('active');
+        line.classList.toggle('deactive');
+      }
+      //phone validation
+      var phone_val = 0;
+      function phone_no(){
+        var phone = document.getElementById("phone");
+        var phoneno = /^\d{10}$/;
+          var filter = phone.value;
+          if (filter.match(phoneno) && filter.length == 10) {
+              document.getElementById('phone_alert').innerHTML = "phone number is valid";
+              document.getElementById('phone_alert').style.color = "green";
+              phone.classList.add('border-green-600');
+              phone.classList.remove('border-red-600');
+              phone_val = 0;
+          }
+          else if (!filter.match(phoneno)) {
+              document.getElementById('phone_alert').innerHTML = "invalid phone number";
+              document.getElementById('phone_alert').style.color = "red";
+              phone.classList.remove('border-green-600');
+              phone.classList.add('border-red-600');
+              phone_val = 1;
+          }
+          if (filter.length == 0) {
+              document.getElementById('phone_alert').innerHTML = "phone number must be 10 digits in length";
+              document.getElementById('phone_alert').style.color = "red";
+              phone.classList.remove('border-green-600');
+              phone.classList.add('border-red-600') ;
+              phone_val = 1;
+          }
+      }
+      function validate(form){
+          if (phone_val  == 1){
+              return false;
+          }
+          else if (phone_val  == 0){
+              return true;
+          }
+      }
+  </script>
+</body>
+</html>

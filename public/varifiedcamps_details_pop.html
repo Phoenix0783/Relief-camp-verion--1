@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Varified Camps</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            /* Primary Colors*/
+            --Midnight-Green-Eagle-Green: #004e64;
+
+            /* Secondary Colors */
+            --Cerulean-Crayola: #00a5cf;
+            --Persian-Green: #25a18e;
+
+            /* Tertiary Colors */
+            --black-title-text: #202020;
+            --grey-body-text: #535353;
+            --Aquamarine: #9fffcb;
+            --Light-Green: #7ae582;
+            --section-bg-grey: #fafafa;
+            --section-bg-blue: rgba(0, 165, 207, 0.1)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        main {
+            background-color: #E5F6FA;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+
+<body>
+                <main class="flex-1 overflow-x-hidden overflow-y-auto">
+                  <div class="bg-white rounded-md w-auto m-4 cursor-default">
+                    <div class="flex justify-start bg-slate-100 p-2">
+                        <button title="go back" type="button" class="text-gray-600 bg-transparent rounded-lg text-sm p-1.5 mr-auto inline-flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h1 class="font-medium font-oswald text-3xl mt-5 mb-10 text-center">Camp Title</h1>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:mx-10 my-5">
+                            <div>
+                                <div class="w-full px-5 mb-6">
+                                    <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
+                                      Address
+                                    </label>
+                                    <p class="text-gray-700 font-montserrat text-sm mb-4">Address Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016</p>
+                                    <p class="text-gray-700 font-montserrat text-base font-semibold mb-2">Total Capacity: <f class="font-normal">20</f></p>
+                                    <p class="text-gray-700 font-montserrat text-base font-semibold mb-4">Remaining space: <f class="font-normal text-green-600">15</f></p>
+                                    <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
+                                        Discription
+                                      </label>
+                                      <p class="text-gray-700 font-montserrat text-sm mb-4">Address Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016 Address Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016</p>    
+                                      <p class="text-gray-700 font-montserrat text-base font-semibold mb-4">Contact Number : <f class="font-normal">9876543452</f></p>                                
+                                </div>
+                            </div>
+                            <div class="px-4">
+                                <iframe class="w-full h-full sm:max-h-64" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889"
+                                     frameborder="0" style="border:0"></iframe>
+                            </div>
+                        </div>
+                </main>          
+    </body>
+</html>

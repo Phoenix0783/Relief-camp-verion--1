@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="px-5 shadow sticky top-0 z-50" style="background-color: #004e64;">
+        <div class="flex justify-between items-center">
+          <!--Logo-->
+          <span class="text-xl font-oswald cursor-pointer text-white my-4">
+            <a href="index.html">RE<f style="color: #9fffcb;">LIE</f>F CAMP</a>
+          </span>
+          
+
+            <button style="background-color: white; color:#004E64;" title="login to see your booked camp"
+            class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+            <a href="/booked_this_camp">Booked this camp</a>
+          </button>
+
+            <button title="login to see your booked camp"
+            class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+            <a href="/peoples">Currently in camp</a>
+          </button>
+
+          <!--home icon-->
+                <div class="flex items-center justify-between">
+                    <div class="relative">
+                        <button class="flex mx-4 text-white focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                              </svg>
+                        </button>
+                    </div>
+
+                    <div x-data="{ dropdownOpen: false }" class="relative">
+                        <button @click="dropdownOpen = ! dropdownOpen"
+                            class="relative block h-7 w-7 rounded-full overflow-hidden shadow focus:outline-none">
+                            <img class="h-full w-full object-cover"
+                                src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
+                                alt="Your avatar">
+                        </button>
+
+                        <div x-show="dropdownOpen" @click="dropdownOpen = false"
+                            class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
+
+                        <div x-show="dropdownOpen"
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
+                            style="display: none;">
+                            <p class="px-4 py-2 font-montserrat font-medium text-base text-gray-900">User Name</p>
+                            <div class="bg-gray-500" style="padding: 0.5px 0px;"></div>
+                            <a  href="/logout"
+                                class="block px-4 py-2 font-montserrat text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!--user type 1-->
+      
+           
+        <h3 style="padding: 10px;" class="font-oswald text-xl sm:text-2xl px-2">Booked This Camp</h3>
+
+          <% for(let people of books){ %> 
+          <div class="flex flex-col mb-14">
+             <div class="py-4 px-4 overflow-x-auto">
+                <div class="table-container align-middle max-h-screen overflow-y-auto inline-block min-w-full shadow sm:rounded-lg border-b border-gray-200" style="scrollbar-width: thin;">
+                   <table class="min-w-full">
+                      <thead class="sticky top-0 z-10 font-oswald">
+                         <tr class="">
+                               <th
+                                   class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                   Name</th>
+                               <th
+                                   class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                   Age</th>
+                               <th
+                                   class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                   Date</th>
+                               <th
+                                   class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                   Status</th>
+                               <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                           </tr>
+                       </thead>
+
+                       <tbody class="font-montserrat">
+                           <tr class="data_panding">
+                               <td class="p-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="ml-2">
+                                           <div class="text-sm leading-5 font-medium text-gray-900"><%= people.name %> 
+                                           </div>
+                                           <div class="text-sm leading-5 text-gray-500"><%= people.phone %></div>
+                                       </div>
+                                   </div>
+                               </td>
+
+                               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                   <div class="text-sm leading-5 text-gray-900"><%= people.age %></div>
+                               </td>
+
+                               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                   <div class="text-sm leading-5 text-gray-900"><%= people.date %></div>
+                               </td>
+
+                               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                   <span class="px-2 py-1.5 font-montserrat font-semibold text-sm leading-tight text-yellow-700 bg-yellow-100 rounded-full whitespace-nowrap">Not Arrived</span>
+                               </td>
+
+                               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
+                                   <button title="arrived" class="mr-2 text-green-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                     </svg></button>
+                                   <button title="remove" class="text-red-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                     </svg>
+                                   </button>
+                               </td>
+                           </tr>
+                         </tbody>
+                      </table>
+                   <div class="px-4 py-3 bg-gray-50 sticky bottom-0 z-10">
+                   <span class="flex text-gray-600 items-center text-sm font-montserrat font-semibold col-span-3">Total : <p id="total_panding" class="font-montserrat font-semibold text-gray-500">100</p></span>                                                                      
+                </div>
+             </div> 
+          </div>
+          <% } %> 
+       </div></div>
+
+</body>
+</html>

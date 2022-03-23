@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #sub-btn {background-color: #004e64; color:#FFFFFF;}
+    #sub-btn:hover {background-color:#00a5cf; color:#004e64;}
+    #link {color:#004e64}
+    #link:hover {color:#00a5cf}
+    #ggl-btn:hover {border-color: #202020; background-color: #58d8ff33;}
+    .fa-google {
+        background: linear-gradient(to bottom left,transparent 49%,#fbbc05 50%) 0 25%/48% 40%,
+                    linear-gradient(to top left,transparent 49%,#fbbc05 50%) 0 75%/48% 40%,
+                    linear-gradient(-40deg ,transparent 53%,#ea4335 54%),
+                    linear-gradient( 45deg ,transparent 46%,#4285f4 48%),#34a853;
+                    background-repeat:no-repeat;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                    -webkit-text-fill-color: transparent;
+                }
+  </style>
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/tailwind.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+
+</head>
+<body>
+      <!--main div-->
+        <div class="min-h-screen flex flex-col">
+            <!--conatainer starts-->
+            <div class="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                <div class="px-6 py-8 rounded w-full">
+                    <h3 class="mb-8 text-3xl font-oswald text-center" style="color: #202020;">Sign Up To Create Camp</h3>
+                    <div class="text-center">
+                        <button id="ggl-btn" class="w-full font-montserrat bg-transparent py-2 px-4 border border-gray-500 rounded transition duration-150 ease-in-out" style="color: #202020;">
+                            <i class="fab fa-google mr-2"></i>
+                            Continue with Google
+                        </button>
+                    </div>
+                    <div>
+                        <p class="font-montserrat text-sm text-center my-4" style="color: #535353">
+                            Or
+                        </p>
+                    </div>
+                    <div>
+                        <p class="font-montserrat text-xs text-center mb-3" style="color: #535353;">
+                            Sign Up using Email
+                        </p>
+                    </div>
+                    <!--form starts-->
+                    <form action="/register" method="POST" class="validated-form" novalidate>
+                        <!--username field-->
+                        <input 
+                        id="username" 
+                        name="username" autofocus
+                            type="text"
+                            class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-3 outline-none  focus:border-black"
+                            onkeyup="u_name()"
+                            placeholder="User Name" style="color: #535353;" required/>
+                            <p id="user_alert" class="mb-3 text-xs"></p>
+                        <!--Email feild-->
+                        <input 
+                        id="email" name="email"
+                            type="text"
+                            class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-3 outline-none focus:border-black"
+                            onkeyup="email_add()"
+                            placeholder="Enter valid email address" style="color: #535353;" required/>   
+                            <p id="email_alert" class="mb-3 text-xs"></p>
+                        <!--pass feild-->
+                        <input 
+                            type="password"
+
+                            id="password" name="password"
+
+
+                            class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-3 outline-none focus:border-black"
+                            onkeyup="pass_word()"
+                            placeholder="Password" style="color: #535353;" required/>  
+                            <p id="pass_alert" class="mb-3 text-xs"></p>            
+                        <!--confirm pass feild-->
+                        <input 
+                            type="password"
+                            onkeyup="confirm_pass()"
+                            class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-3 outline-none focus:border-black"
+                            name="confirm_password"
+                            placeholder="Confirm Password" style="color: #535353;" required/>
+                            <p id="conf_alert" class="mb-3 text-xs"></p>
+                        <button
+                            type="submit"
+                            id="sub-btn"
+                            class="w-full text-center font-oswald py-3 rounded text-white focus:outline-none my-1 transition duration-150 ease-in-out uppercase">Create Account</button>
+                    </form>
+                    <div class="text-center font-montserrat text-xs text-grey-dark mt-3" style="color: #535353;">
+                        By signing up, you agree to the 
+                        <a class="underline font-montserrat text-grey-dark transition duration-150 ease-in-out" href="#" id="link">
+                            Terms of Service
+                        </a>
+                    </div>
+                </div>
+    
+                <div class="text-grey-dark text-sm font-montserrat mb-6" style="color: #535353;">
+                    Already have an account? 
+                    <a href="" class="underline cursor-pointer text-base font-montserrat text-blue transition duration-150 ease-in-out" id="link">
+                        Sign in
+                    </a>.
+                </div>
+            </div>
+        </div>
+    <footer class="lg:text-left cursor-default">
+        <div class="text-center p-3 footer-bottom" style="background-color: #004e64;">
+          <span class="text-white font-oswald">© 2022 Copyright:</span>
+          <a class="text-white font-montserrat" href="index.html">Relief Camp</a>
+        </div>
+      </footer>
+    <script>
+        /*feild validations*/
+        var username = document.getElementById("user_name");
+        var email = document.getElementById("email");
+        var password = document.getElementById("pass");
+        var repass = document.getElementById("conf_pass");
+        var email_val = 0;
+        var user_val = 0;
+        var pass_val = 0;
+        var conf_val = 0;
+
+        function u_name(){
+            var filter = username.value;
+            if (filter.length == 0 || filter.length < 5) {
+                document.getElementById('user_alert').innerHTML = "username must be 5 charecter long";
+                document.getElementById('user_alert').style.color = "red";
+                username.classList.remove('border-green-600');
+                username.classList.add('border-red-600') ;
+                user_val = 1;
+            }
+            else if (filter.length > 4) {
+                document.getElementById('user_alert').innerHTML = "minimum character requirement is reached";
+                document.getElementById('user_alert').style.color = "green";
+                username.classList.add('border-green-600');
+                username.classList.remove('border-red-600');
+                user_val = 0;
+            }
+        }
+        function email_add(){
+            var re = /\S+@\S+\.\S+/;
+            var filter = email.value;
+            if (filter.match(re) && filter.length > 0) {
+                document.getElementById('email_alert').innerHTML = "valid email format";
+                document.getElementById('email_alert').style.color = "green";
+                email.classList.add('border-green-600');
+                email.classList.remove('border-red-600');
+                email_val = 0;
+            }
+            else if (!filter.match(re)) {
+                document.getElementById('email_alert').innerHTML = "invalid email";
+                document.getElementById('email_alert').style.color = "red";
+                email.classList.remove('border-green-600');
+                email.classList.add('border-red-600');
+                email_val = 1;
+            }
+            if (filter.length == 0) {
+                document.getElementById('email_alert').innerHTML = "email address required";
+                document.getElementById('email_alert').style.color = "red";
+                email.classList.remove('border-green-600');
+                email.classList.add('border-red-600') ;
+                email_val = 1;
+            }
+        }
+        function pass_word(){
+           
+            var filter = password.value;
+            if (filter.length == 0 || filter.length < 8) {
+                document.getElementById('pass_alert').innerHTML = "password must be 8 charecter long";
+                document.getElementById('pass_alert').style.color = "red";
+                password.classList.remove('border-green-600');
+                password.classList.add('border-red-600') ;
+                pass_val = 1;
+            }
+            else if (filter.length > 7) {
+                document.getElementById('pass_alert').innerHTML = "minimum character requirement is reached";
+                document.getElementById('pass_alert').style.color = "green";
+                password.classList.add('border-green-600');
+                password.classList.remove('border-red-600');
+                pass_val = 0;
+            }
+        }
+        function confirm_pass(){
+            var pass = password.value;
+            var filter = repass.value;
+            if (filter != pass) {
+                document.getElementById('conf_alert').innerHTML = "password don't match";
+                document.getElementById('conf_alert').style.color = "red";
+                repass.classList.remove('border-green-600');
+                repass.classList.add('border-red-600') ;
+                conf_val = 1;
+            }
+            else if (filter == pass) {
+                document.getElementById('conf_alert').innerHTML = "password varified";
+                document.getElementById('conf_alert').style.color = "green";
+                repass.classList.add('border-green-600');
+                repass.classList.remove('border-red-600');
+                conf_val = 0;
+            }
+            if (filter.length == 0 || filter.length < 8) {
+                document.getElementById('conf_alert').innerHTML = "password must be 8 charecter long";
+                document.getElementById('conf_alert').style.color = "red";
+                repass.classList.remove('border-green-600');
+                repass.classList.add('border-red-600') ;
+                conf_val = 1;
+            }
+        }
+        function validate(form){
+            if (email_val  == 1 || user_val == 1 || pass_val == 1 || conf_val == 1){
+                return false;
+            }
+            else if (email_val  == 0 || user_val == 0 || pass_val == 0 || conf_val == 0){
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

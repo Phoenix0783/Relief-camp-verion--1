@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #sub-btn {background-color: #004e64; color:#FFFFFF;}
+            #sub-btn:hover {background-color:#00a5cf; color:#004e64;}
+            #close-btn {background-color: #004e64; color:#FFFFFF;}
+            #close-btn:hover {background-color:#00a5cf; color:#004e64;}
+            
+            #container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+        </style>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--model section-->
+        <div id="otp-model" aria-hidden="true" class="fixed right-0 left-0 z-50 justify-center items-center h-full inset-0" style="background-color:rgba(0, 0, 0, 0.3); display: none;">
+            <div class="relative px-5 w-full max-w-md h-auto">
+                <div class="relative bg-white rounded-lg cursor-default shadow">
+                    <div class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
+                        <div class="flex justify-center items-center">
+                            <div class="w-fit mt-5 rounded-full bg-green-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 m-2 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-oswald text-center font-medium" style="color: #202020;">Selected Camp Is Booked</h3>
+                        <p class="text-center font-montserrat"style="color: #202020;">Your selected camp is booked, now you have visit the camp and varify yourself</p>
+                        <div class="flex justify-center items-center">
+                            <button id="close-btn" class="rounded text-sm w-fit px-5 py-2.5 text-center">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--model ends-->
+        <div id="container">
+            <button id="sub-btn" type="submit" class="rounded px-10 py-3 bg-teal-700 text-white">SUBMIT</button>
+        </div>
+    <script>
+            document.getElementById('sub-btn').addEventListener('click', 
+            function() {
+                document.getElementById('otp-model').style.display = 'flex';  
+            });
+             document.getElementById('close-btn').addEventListener('click',
+             function(){
+                 document.getElementById('otp-model').style.display = 'none';
+             });
+    </script>
+    </body>
+</html>
