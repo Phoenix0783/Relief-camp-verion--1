@@ -30,7 +30,7 @@ const Alert = require('./models/alert');
 
 const MongoDBStore = require("connect-mongo")(session);
 
-const dbURL = process.env.DB_URL || 'mongodb://localhost:27017/elp-camp'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/elp-camp'
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -263,8 +263,10 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-app.listen(3000, () => {
-    console.log('Serving on port 3000')
+
+const port  =process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
 })
 
 
