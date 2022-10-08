@@ -55,6 +55,11 @@
             background-color: var(--section-bg-blue);
         }
     </style>
+     <style>
+        #hr:hover{
+            background-color: #E5F6FA;
+        }
+    </style>
 </head>
 
 <body>
@@ -82,10 +87,20 @@
         class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
         <a href="/alert">Send Alert</a>
       </button>
+      <button title="login to see your booked camp"
+        class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+        <a href="/campgrounds/new">Create Camp</a>
+        </button>
+        <button title="login to see your booked camp"
+        class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
+        <a href="/volunteer-form">Register as volunteer</a>
+        </button>
         <% if(!currentUser) { %>
         <button title="login to see your booked camp"
         class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
         <a href="/login">Sign In</a>
+        
+      </button>
       </button>
       <% } %> 
       <button class="mx-4 text-white focus:outline-none">
@@ -164,7 +179,7 @@
                             </tr>
                         </thead>
 
-                        <tbody class="font-montserrat">
+                        <tbody id="hr" class="font-montserrat">
                             <tr class="">
                                 <td class="p-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="ml-2">

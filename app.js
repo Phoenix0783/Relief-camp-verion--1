@@ -24,13 +24,14 @@ const reviewRoutes = require('./routes/reviews');
 const Booked = require('./models/booked');
 const People = require('./models/people');
 const Alert = require('./models/alert');
-
-// const dbUrl = process.env.DB_URL;
-
+const Volunteer = require('./models/volunteer');
+const DRO = require('./models/dro');
 
 const MongoDBStore = require("connect-mongo")(session);
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/elp-camp'
+
+
+const dbUrl = 'mongodb://localhost:27017/elp-camp'
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -98,6 +99,10 @@ app.use((req, res, next) => {
 })
 
 
+
+
+
+// DRO pages routes
 app.get('/openNGOD', async(req,res)=>{
     const campgrounds = await Campground.find({});
     res.render('ngod.ejs',{campgrounds})
@@ -121,8 +126,6 @@ app.post('/openNGOD', async(req,res)=>{
 })
 
 
-
-
 // Alerts
 
 app.get('/alert', (req, res) => {
@@ -130,11 +133,12 @@ app.get('/alert', (req, res) => {
     res.render('alert_form')
 });
 app.post('/sendAlert', async (req, res) => {
-    // var options = {authorization : process.env.API_KEY , message : 'Please stay calm, our team will be coming to your rescue soon. it is adviced to keep your Phone active our team will be contacting you as soon as they arrive on the scene for your rescue scene 🤝🤝🤝',  numbers : [req.body.number]} 
+    // var option1 = {authorization : process.env.API_KEY , message : 'Please stay calm, our team will be coming to your rescue soon. it is adviced to keep your Phone active our team will be contacting you as soon as they arrive on the scene for your rescue scene 🤝🤝🤝',  numbers : [req.body.number]} 
 
-    // var options = {authorization : process.env.API_KEY , message : `Your alert under name ${req.body.name},${req.body.location},Time:${req.body.time},Date:${req.body.date} 🤝🤝🤝`,  numbers : [req.body.number]} 
+    // var options2 = {authorization : process.env.API_KEY , message : `Your alert under name ${req.body.alert[name]},${req.body.alert[location]},Time:${req.body.alert[time]},Date:${req.body.alert[date]} 🤝🤝🤝`,  numbers : [req.body.alert[phone]]} 
 
-    // const response =await fast2sms.sendMessage(options) //Asynchronous Function.
+    // const response1 =await fast2sms.sendMessage(option1)
+    // const response2 =await fast2sms.sendMessage(option2) //Asynchronous Function.
 
     const alert = new Alert(req.body.alert);
     await alert.save();
@@ -149,6 +153,9 @@ app.get('/alert_people',async (req, res) => {
  
 
 
+
+
+
 // Book camp
 
 app.get('/bookCamp',async (req, res) => {
@@ -157,8 +164,8 @@ app.get('/bookCamp',async (req, res) => {
 });
 
 app.post('/sendbookCamp',async (req, res) => {
-    // var option1 = {authorization : process.env.API_KEY , message : `Mr./Mrs. ${req.body.name} , Camp named with ID of ${req.body.cname} has been booked on the number registered on ${req.body.number}.`,  numbers : [req.body.number]} 
-    //  var option2 = {authorization : process.env.API_KEY , message : `Please keep this message secure. It will be needed to verify your identiy when you arrive at the campsite.Have a safe journey on the way to the camp`,  numbers : [req.body.number]} 
+    // var option1 = {authorization : process.env.API_KEY , message : `Mr./Mrs. ${req.body.booked[name]} , Camp named with ID of ${req.body.cname} has been booked on the number registered on ${req.body.booked[phone]}.`,  numbers : [req.body.booked[phone]]} 
+    //  var option2 = {authorization : process.env.API_KEY , message : `Please keep this message secure. It will be needed to verify your identiy when you arrive at the campsite.Have a safe journey on the way to the camp`,  numbers : [req.body.booked[phone]]} 
     // const response1 =await fast2sms.sendMessage(option1) //Asynchronous Function.
     // const response2 =await fast2sms.sendMessage(option2) //Asynchronous Function.
     res.redirect('/campgrounds')
@@ -172,6 +179,8 @@ app.get('/booked_this_camp',async (req, res) => {
     const books = await Booked.find({});
     res.render('booked_this_camp.ejs',{books})
 });
+
+
 
 
 
@@ -206,9 +215,15 @@ app.get('/DRO_form',async (req, res) => {
 });
 
 app.post('/sendDRO',async (req, res) => {
-    var options = {authorization : process.env.API_KEY , message : `Your organization has been registered under name of ${req.body.orgName}, your credentials under the username = admin and password = admin`,  numbers : [req.body.number]} 
-    const response =await fast2sms.sendMessage(options) //Asynchronous Function.
+    // var options = {authorization : process.env.API_KEY , message : `Your organization has been registered under name of ${req.body.dro[orgname]}, your credentials under the username = admin and password = admin`,  numbers : [req.body.dro[phone]]} 
+    // const response =await fast2sms.sendMessage(options) //Asynchronous Function.
+    const dro = new DRO(req.body.dro);
+    await dro.save();
         res.redirect('/campgrounds')
+});
+app.get('/dro_list',async (req, res) => {
+    const dros = await DRO.find({});
+    res.render('dro_list.ejs',{dros})
 });
 
 
@@ -219,28 +234,25 @@ app.get('/directions', (req, res) => {
 });
     
 
+// Volunteer
+app.get('/volunteer-form', (req, res) => {
+    res.render('volunteer_form.ejs')
+});
+    
+// /sendvoluteer
+app.post('/sendvoluteer',async (req, res) => {
+    // var options = {authorization : process.env.API_KEY , message : `Volunteer : ${req.body.volunteer[name]}, you have been registered please visit the nearest camp`,  numbers : [req.body.volunteer[phone]]} 
+    // const response =await fast2sms.sendMessage(options) //Asynchronous Function.
 
-
-// show demo routes
-
-app.get('/demo', (req, res) => {
-
-    res.render('ngod1.ejs',)
+    const volunteer = new Volunteer(req.body.volunteer);
+    await volunteer.save();
+    res.redirect('/campgrounds');
 });
 
-app.get('/showdemo', (req, res) => {
-    res.render('showdemo.ejs')
+app.get('/volunteer-list',async (req, res) => {
+    const volunteers = await Volunteer.find({});
+    res.render('volunteer_list.ejs',{volunteers})
 });
-
-app.get('/bookecampdemo', (req, res) => {
-    res.render('bookedcampdemo.ejs')
-});
-
-app.get('/currentcampdemo', (req, res) => {
-    res.render('currentcampdemo.ejs')
-});
-
-
 
 
 app.use('/', userRoutes);
@@ -265,8 +277,8 @@ app.use((err, req, res, next) => {
 
 
 const port  =process.env.PORT || 3000
-app.listen(port, () => {
-    console.log(`Serving on port ${port}`)
+app.listen(3000, () => {
+    console.log(`Serving on port 3000`)
 })
 
 

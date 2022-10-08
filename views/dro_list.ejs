@@ -212,6 +212,7 @@ a{
 }
     </style>
     <!-- sidebar style -->
+
     <style>
         #hr:hover{
             background-color: #E5F6FA;
@@ -272,7 +273,7 @@ a{
                                 class="block px-4 py-2 font-montserrat text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Login</a>
                                     <% } %> 
                             </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </nav>
@@ -294,27 +295,26 @@ a{
                         <span class="nav__name">Active camps</span>
                        
                     </a>
- 
-                    <a href="/requirements" class="nav__link ">
-                      <ion-icon name="albums-outline" class="nav__icon"></ion-icon>
+
+                    <a href="/requirements" class="nav__link">
+                        <ion-icon name="albums-outline" class="nav__icon"></ion-icon>
                         <span class="nav__name">Requirements</span>
                     </a>
 
-                    <a href="/alert_people" class="nav__link active">
+                    <a href="/alert_people" class="nav__link">
                       <ion-icon name="person-outline" class="nav__icon"></ion-icon>
                         <span class="nav__name">Peoples in need</span>
                     </a>
                     <a href="/volunteer-list" class="nav__link ">
                       <ion-icon name="people-outline" class="nav__icon"></ion-icon>
-                      <span class="nav__name">Volunteers</span>
-                  </a>
+                        <span class="nav__name">Volunteers</span>
+                    </a>
 
-
-                    <a href="/dro_list" class="nav__link">
+                    <a href="/dro_list" class="nav__link active">
                       <ion-icon name="checkmark-done-outline" class="nav__icon"></ion-icon>
                         <span class="nav__name">Registered DRO's</span>
                     </a>
-                   
+                    
                 </div>
             </div>
 
@@ -326,9 +326,12 @@ a{
     </div>
 
     
-<h3 style="padding: 10px; font-size: 30px;" class="text-center font-oswald text-xl sm:text-2xl px-2">Peoples Alert</h3>
-<% for(let alert of alerts){ %>       
-    <div id="alerthistory_div" class="">
+
+ <h3 style="padding: 10px; font-size: 30px;" class=" text-center font-oswald text-xl sm:text-2xl px-2">Registered DRO's</h3>
+
+<% for(let d of dros){ %>         
+
+    <div id="active_div" class="">
         <div class="flex flex-col mb-14">
             <div class="py-4 px-4 overflow-x-auto">
                 <div class="table-container align-middle max-h-screen overflow-y-auto inline-block min-w-full shadow sm:rounded-lg border-b border-gray-200" style="scrollbar-width: thin;">
@@ -337,54 +340,58 @@ a{
                             <tr class="">
                                 <th
                                     class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Name</th>
-                                 <th
+                                    Organization name</th>
+                                <th
                                     class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Location</th>
+                                    Type</th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Name</th>
                                 <th
                                     class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                     Contact</th>
-                                <th
+                                    <th
                                     class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Date</th>
-                                <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                    Time</th>
+                                    Email</th>
+                                <!-- <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</th> -->
                             </tr>
                         </thead>
 
-                        <tbody id="hr" class="font-montserrat">
+                        <tbody id="hr"  class="font-montserrat">
                             <tr class="">
                                 <td class="p-4 whitespace-no-wrap border-b border-gray-200">
                                  <div class="ml-2">
-                                            <div class="text-sm leading-5 font-medium text-gray-900"><%= alert.name %> 
+                                            <div class="text-sm leading-5 font-medium text-gray-900"><%= d.orgname %> 
                                             </div>
+                                            
+                                        </div>
                                     </div>
                                 </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900"><%= d.type %></div>
+                                </td>
                                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900"><%= alert.location %></div>
+                                    <div class="text-sm leading-5 text-gray-900"><%= d.name %></div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900"><%= alert.phone %></div>
+                                    <div class="text-sm leading-5 text-gray-900"><%= d.phone %></div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900"><%= alert.date %></div>
+                                    <div class="text-sm leading-5 text-gray-900"><%= d.email %></div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900"><%= alert.time %></div>
-                                </td>
-                            </tr>   
+
+                            </tr>
+                            
                         </tbody>
                     </table>
                     <div class="px-4 py-3 bg-gray-50 sticky bottom-0 z-10">
-                                                                                
+                  
                 </div>
                 </div> 
             </div>
 
-    
-        
-<% } %>
+<% } %> 
+
     <!-- ===== IONICONS ===== -->
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     

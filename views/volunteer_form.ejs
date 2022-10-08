@@ -15,23 +15,35 @@
          <div class="min-h-screen flex flex-col">
           <!--conatainer starts-->
           <div class="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <h3 class="mb-5 text-3xl font-oswald text-center" style="color: #202020;">Alert form</h3>
+            <h3 class="mb-5 text-3xl font-oswald text-center" style="color: #202020;">Register as Volunteer</h3>
               <div class="px-6 py-8 rounded w-full">
                   <!--form starts-->
-                  <form action="/sendAlert" method="post" class="" onsubmit="return validate(this)">
+                  <form action="/sendvoluteer" method="post" class="" onsubmit="return validate(this)">
                       <!--Name feild-->
                       <input 
                           type="text"
                           class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
-                          name="alert[name]"
+                          name="volunteer[name]"
                           placeholder="Your Name" style="color: #535353;" required/>
 
-                          <!-- input location -->
                           <input 
                           type="text"
                           class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
-                          name="alert[location]"
-                          placeholder="Your Location" style="color: #535353;" required/>
+                          name="volunteer[age]"
+                          placeholder="Your age" style="color: #535353;" required/>
+
+                          <div class="inline-block relative w-64">
+                            <select style="padding: 10px; width: 384px; border: 1px solid grey; border-radius: 3px;margin-bottom: 10px; color: grey; bor" aria-placeholder="Choose gender" name="volunteer[gender]" >
+                               <option selected>Select</option>
+                              <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                            
+                          </div>
+
+                          <!-- input location -->
+                         
 
 
                       <!--phone number feild-->
@@ -39,28 +51,17 @@
                           type="text"
                           id="phone" onkeyup="phone_no()"
                           class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-2 outline-none focus:border-black"
-                          name="alert[phone]"
+                          name="volunteer[phone]"
                           placeholder="Valid 10 digit mobile number" style="color: #535353;" required/>
                           <p id="phone_alert" class="mb-4 text-xs"></p> 
 
-                          <!--date feild-->
-                          <input  
-                          type="date"
-                          class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
-                          name="alert[date]"
-                          placeholder="Enter Date" style="color: #535353;" required/> 
-
-                      <!-- time field -->
-                      <input 
-                          type="time"
-                          class="block border font-montserrat border-gray-400 w-full p-3 rounded mb-5 outline-none focus:border-black"
-                          name="alert[time]"
-                          placeholder="Enter Time" style="color: #535353;" required/> 
-                      <button
+                          <button
                           type="submit"
                           id="sub-btn"
                           style="background-color: #004E64;"
                           class="w-full text-center font-oswald py-3 rounded text-white focus:outline-none my-1 transition duration-150 ease-in-out uppercase">Submit</button>
+
+                     
                   </form>
               </div>
           </div>

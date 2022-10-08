@@ -39,7 +39,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        main {
+        main { 
             background-color: #E5F6FA;
         }
         @media (max-width: 600px) {
@@ -56,152 +56,416 @@
             }
         }
     </style>
+
+    <style>
+        /*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root{
+  --nav-width: 92px;
+
+  /*===== Colores =====*/
+  --first-color: #0C5DF4;
+  --bg-color: #12192C;
+  --sub-color: #B6CEFC;
+  --white-color: #FFF;
+  
+  /*===== Fuente y tipografia =====*/
+  --body-font: 'Poppins', sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: .875rem;
+  
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+
+/*===== BASE =====*/
+*,::before,::after{
+  box-sizing: border-box;
+}
+body{
+  position: relative;
+  margin: 0;
+  padding: 0rem 0 0 5.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: .5s;
+}
+h1{
+  margin: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: .5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand{
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle{
+  font-size: 1.25rem;
+  padding: .75rem;
+  cursor: pointer;
+}
+.nav__logo{
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link{
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: .75rem;
+  padding: .75rem;
+  color: var(--white-color);
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+  transition: .3s;
+  cursor: pointer;
+}
+.nav__link:hover{
+  background-color: var(--first-color);
+}
+.nav__icon{
+  font-size: 1.25rem;
+}
+.nav__name{
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander{
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd{
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active{
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse{
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link{
+  justify-self: flex-end;
+  transition: .5s;
+}
+.collapse__menu{
+  display: none;
+  padding: .75rem 2.25rem;
+}
+.collapse__sublink{
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover{
+  color: var(--white-color);
+}
+
+/*Show collapse*/
+.showCollapse{
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate{
+  transform: rotate(180deg);
+}
+    </style>
+
+    <style>
+      .wrapper{
+  background: #456173;
+  display: flex;
+  justify-content: center;
+}
+.cards {
+  background: white;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-gap: 1rem;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% - 2rem);
+  min-height: 70vh;
+}
+.cards-content {
+  align-items: center;
+  background: #fff;
+  border-radius: 1rem;
+  color: #111;
+  display: flex;
+  font-weight: 900;
+  justify-content: center;
+  font-size: 5rem;
+  text-transform: uppercase;
+}
+.cards-content:first-child {
+  margin-left: 2rem;
+}
+.cards-content:last-child {
+  margin-right: 2rem;
+}
+    </style>
+    <!-- sidebar style -->
+
+
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 
 <body>
     <nav class="px-5 shadow sticky top-0 z-50" style="background-color: #004e64;">
-            <div class="flex justify-between items-center">
-              <!--Logo-->
-              <span class="text-xl font-oswald cursor-pointer text-white my-4">
-                <a href="index.html">RE<f style="color: #9fffcb;">LIE</f>F CAMP</a>
-              </span>
-              <% if(currentUser){ %>
-                <button title="login to see your booked camp"
-                class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
-                <a href="/booked_this_camp">Booked this camp</a>
-              </button>
-
-                <button title="login to see your booked camp"
-                class="md:text-sm lg:text-base border border-solid border-white text-white font-oswald duration-500 px-4 py-1 sm:mx-4 my-3 rounded-lg">
-                <a href="/peoples">Currently in camp</a>
-              </button>
-
-              <% } %> 
-              <!--home icon-->
-                    <div class="flex items-center justify-between">
-                        <div class="relative">
-                            <button class="flex mx-4 text-white focus:outline-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                                  </svg>
-                            </button>
-                        </div>
-
-                        <div x-data="{ dropdownOpen: false }" class="relative">
-                            <button @click="dropdownOpen = ! dropdownOpen"
-                                class="relative block h-7 w-7 rounded-full overflow-hidden shadow focus:outline-none">
-                                <img class="h-full w-full object-cover"
-                                    src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
-                                    alt="Your avatar">
-                            </button>
-
-                            <div x-show="dropdownOpen" @click="dropdownOpen = false"
-                                class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
-
-                            <div x-show="dropdownOpen"
-                                class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
-                                style="display: none;">
-                                <!-- <p class="px-4 py-2 font-montserrat font-medium text-base text-gray-900">User Name</p> -->
-
-                                <% if(currentUser){ %>
-                                <div class="bg-gray-500" style="padding: 0.5px 0px;"></div>
-                                <a  href="/logout"
-                                    class="block px-4 py-2 font-montserrat text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
-
-                                    <% }else{ %> 
-                                <div class="bg-gray-500" style="padding: 0.5px 0px;"></div>
-                                <a  href="/login"
-                                    class="block px-4 py-2 font-montserrat text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Login</a>
-                                        <% } %> 
-                                </div>
-                        </div>
+        <div class="flex justify-between items-center">
+          <!--Logo-->
+          <span class="text-xl font-oswald cursor-pointer text-white my-4">
+            <a href="index.html">RE<f style="color: #9fffcb;">LIE</f>F CAMP</a>
+          </span>
+       
+          <!--home icon-->
+                <div class="flex items-center justify-between">
+                    <div class="relative">
+                        <button class="flex mx-4 text-white focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                              </svg>
+                        </button>
                     </div>
-                </div>
-            </nav>
-                <main class="flex-1 overflow-x-hidden overflow-y-auto">
-                  
-                  <div class="bg-white rounded-md w-auto m-4 cursor-default">
-                      <div>
-                          
-                        <div class="flex justify-between items-center p-2 bg-slate-100">
-                            <h3 class="font-oswald text-xl sm:text-2xl px-2">Camp profile</h3>
 
+                    <div x-data="{ dropdownOpen: false }" class="relative">
+                        <button @click="dropdownOpen = ! dropdownOpen"
+                            class="relative block h-7 w-7 rounded-full overflow-hidden shadow focus:outline-none">
+                            <img class="h-full w-full object-cover"
+                                src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg"
+                                alt="Your avatar">
+                        </button>
 
+                        <div x-show="dropdownOpen" @click="dropdownOpen = false"
+                            class="fixed inset-0 h-full w-full z-10" style="display: none;"></div>
 
+                        <div x-show="dropdownOpen"
+                            class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
+                            style="display: none;">
+                            <!-- <p class="px-4 py-2 font-montserrat font-medium text-base text-gray-900">User Name</p> -->
 
                             <% if(currentUser){ %>
-                     
-                            <button class="text-xs text-black border border-black px-4 py-2 font-montserrat rounded hover:bg-red-400 hover:text-white hover:border-red-200 focus:text-black focus:bg-transparent"><a href="/campgrounds/<%=campground._id%>/edit">Edit</a></button>
+                            <div class="bg-gray-500" style="padding: 0.5px 0px;"></div>
+                            <a  href="/logout"
+                                class="block px-4 py-2 font-montserrat text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
 
-                            <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-                                <button class="text-xs text-black border border-black px-4 py-2 font-montserrat rounded hover:bg-red-400 hover:text-white hover:border-red-200 focus:text-black focus:bg-transparent">Delete</button>
-                            </form>
-                           
-                            <form action="/add_person_form">
-                                <button class="text-xs text-black border border-black px-4 py-2 font-montserrat rounded hover:bg-red-400 hover:text-white hover:border-red-200 focus:text-black focus:bg-transparent">Add a person</button>
-                            </form>
+                                <% }else{ %> 
+                            <div class="bg-gray-500" style="padding: 0.5px 0px;"></div>
+                            <a  href="/login"
+                                class="block px-4 py-2 font-montserrat text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Login</a>
+                                    <% } %> 
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <div style="background-color: #004E64;" class="l-navbar" id="navbar">
+        <nav class="nav">
+            <div>
+                <div class="nav__brand">
+                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                    <a href="#" class="nav__logo">Relief Camps</a>
+                </div>
+                <div class="nav__list">
+                    <a href="#" class="nav__link active">
+                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Dashboard</span>
+                    </a>
 
-                            <form action="/bookCamp">
-                                <button class="text-xs text-black border border-black px-4 py-2 font-montserrat rounded hover:bg-red-400 hover:text-white hover:border-red-200 focus:text-black focus:bg-transparent">Book</button>
-                            </form>
-                            <% } %> 
-                        </div>
+                    <% if(currentUser){ %>
+                    <a href="/booked_this_camp" class="nav__link">
+                      <ion-icon name="bookmarks-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Booked this camp</span>
+                       
+                    </a>
+
+                    <a href="/peoples" class="nav__link">
+                      <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Currently in camps</span>
+                    </a>
+
+                    <!-- edits -->
+                    <a href="/campgrounds/<%=campground._id%>/edit" class="nav__link">
+                      <ion-icon name="create-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Edit</span>
+                    </a>
+
+                    <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                    <a class="nav__link">
+                      <ion-icon name="trash-outline" class="nav__icon"></ion-icon>
+                        <button class="nav__name">Delete</button>
+                    </a>
+                    </form>
+
+                    <a href="/add_person_form" class="nav__link">
+                      <ion-icon name="person-add-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Add a person</span>
+                    </a>
+
+
+                    <a href="/bookCamp" class="nav__link">
+                      <ion-icon name="bookmark-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Book</span>
+                    </a>
+
+                    <% }%>
+                    <!-- edits end -->
+
+                    <!-- <div  class="nav__link collapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Currently in camps</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div> -->
+
+                    <!-- <a href="#" class="nav__link">
+                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Analytics</span>
+                    </a>
+                    <div class="nav__link collapse">
+                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Team</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav__name">Settings</span>
+                    </a> -->
+                </div>
+            </div>
+            <% if(currentUser){ %>
+            <a href="/logout" class="nav__link">
+                <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                <span class="nav__name">Log Out</span>
+            </a>
+            <% }else{ %> 
+            <a href="/login" class="nav__link">
+              <ion-icon name="log-in-outline" class="nav__icon"></ion-icon>
+              <span class="nav__name">Log In</span>
+          </a>
+          <% } %> 
+
+            
+        </nav>
+    </div>
+
+    <!-- sidebar -->
+    <!-- <h1>Componentes</h1> -->
+    <main  class="flex-1 overflow-x-hidden overflow-y-auto">
+                  
+        <div class="bg-white rounded-md w-auto m-4 cursor-default">
+            <div>
+                
+              <div class="flex justify-between items-center p-2 bg-slate-100">
+                  <h3 class="font-oswald text-xl sm:text-2xl px-2">Camp profile</h3>
+
+                 
+              </div>
+            </div>
+
+          <div class="p-4">
+              <h1 class="font-medium font-oswald text-3xl mt-5 mb-10 text-center"><%= campground.title%></h1>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:mx-10 my-5">
+                  <div>
+                      <div class="w-full px-5 mb-6">
+                          <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
+                            Address
+                          </label>
+                          <p class="text-gray-700 font-montserrat text-sm mb-4"><%= campground.location%></p>
+                          <p class="text-gray-700 font-montserrat text-base font-semibold mb-2">Total Capacity: <f class="font-normal"><%= campground.price%></f></p>
+                          <p class="text-gray-700 font-montserrat text-base font-semibold mb-4">Remaining space: <f class="font-normal text-green-600">15</f></p>                                
+                          <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
+                              Discription
+                            </label>
+                            <p class="text-gray-700 font-montserrat text-sm mb-4"><%= campground.description%></p>  
+                            <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
+                              Requirements
+                            </label>
+                            <p class="text-gray-700 font-montserrat text-sm mb-4"><%= campground.requirements%></p>    
+                            <p class="text-gray-700 font-montserrat text-base font-semibold mb-4">Contact Number : <f class="font-normal"><%= campground.phone %> </f></p>                                
                       </div>
-      
-                    <div class="p-4">
-                        <h1 class="font-medium font-oswald text-3xl mt-5 mb-10 text-center"><%= campground.title%></h1>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:mx-10 my-5">
-                            <div>
-                                <div class="w-full px-5 mb-6">
-                                    <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
-                                      Address
-                                    </label>
-                                    <p class="text-gray-700 font-montserrat text-sm mb-4"><%= campground.location%></p>
-                                    <p class="text-gray-700 font-montserrat text-base font-semibold mb-2">Total Capacity: <f class="font-normal"><%= campground.price%></f></p>
-                                    <p class="text-gray-700 font-montserrat text-base font-semibold mb-4">Remaining space: <f class="font-normal text-green-600">15</f></p>                                
-                                    <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
-                                        Discription
-                                      </label>
-                                      <p class="text-gray-700 font-montserrat text-sm mb-4"><%= campground.description%></p>  
-                                      <label class="block uppercase font-montserrat tracking-wide text-gray-700 text-base font-bold">
-                                        Requirements
-                                      </label>
-                                      <p class="text-gray-700 font-montserrat text-sm mb-4"><%= campground.requirements%></p>    
-                                      <p class="text-gray-700 font-montserrat text-base font-semibold mb-4">Contact Number : <f class="font-normal"><%= campground.phone %> </f></p>                                
-                                </div>
-                            </div>
-                            <div class="px-4">
-                                <div id='map' ></div>
-                            </div>
-                        </div>          
-                        <section class="text-gray-600 my-10 lg:mx-10">
-                            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5">
-                                <div>
-                                    <% campground.images.forEach((img, i) => {  %>
-                                        <img src="<%= img.url%>" class="w-full object-cover object-center block"" alt="">
-                                    <% }) %>
-                                </div>
-                                <!-- <div>
-                                    <img alt="gallery" class="w-full object-cover object-center block" src="https://cdn.pixabay.com/photo/2016/02/19/20/57/iceland-1211171_960_720.jpg">
-                                </div>
-                                <div>
-                                    <img alt="gallery" class="w-full object-cover object-center block" src="https://cdn.pixabay.com/photo/2016/02/19/20/57/iceland-1211171_960_720.jpg">
-                                </div>
-                                <div>
-                                    <img alt="gallery" class="w-full object-cover object-center block" src="https://cdn.pixabay.com/photo/2016/02/19/20/57/iceland-1211171_960_720.jpg">
-                                </div>
-                                <div>
-                                    <img alt="gallery" class="w-full object-cover object-center block" src="https://cdn.pixabay.com/photo/2016/02/19/20/57/iceland-1211171_960_720.jpg">
-                                </div> -->
-                            </div>
+                  </div>
+                  <div class="px-4">
+                      <div id='map' ></div>
+                  </div>
+              </div>          
+          
 
-                            
-                                    
-                     
-                                
-                        </section>
+              <div class="wrapper">
+                <section class="cards">
+                  <div class="cards-content">
+                    <% campground.images.forEach((img, i) => {  %>
+                      <img src="<%= img.url%>" class="w-full object-cover object-center block"" style="height: 500px; width: 500px;" alt="">
+                  <% }) %>
+                  </div>
+                </section>
+                </div>
                 </main>
+
+
+
+    <!-- ===== IONICONS ===== -->
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+    
+    <!-- ===== MAIN JS ===== -->
+    <script src="assets/js/main.js"></script>
+   
+  
                 <footer class="lg:text-left cursor-default">
                     <div class="text-center p-3 footer-bottom" style="background-color: #004e64;">
                       <span class="text-white font-oswald">© 2022 Copyright:</span>
@@ -237,5 +501,49 @@
 </script>
 
 <script src="/javascripts/showPageMap.js"></script>
+
+<script>
+    /*===== EXPANDER MENU  =====*/ 
+const showMenu = (toggleId, navbarId, bodyId)=>{
+  const toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/ 
+const linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/ 
+const linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    const collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    const rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+
+</script>
+<!-- sidebar sciprt -->
     </body>
 </html>
